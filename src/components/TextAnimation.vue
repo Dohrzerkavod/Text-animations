@@ -5,7 +5,8 @@
         <button @click="typeAnimation">Type Animation</button>
         <button @click="scrambleAnimation">Scramble Animation</button>
         <button @click="flyInAnimation">Fly-In Animation</button>
-      </div>
+        <button @click="blurAnimation">Blur Animation</button>
+    </div>
       <button class="dark-mode-toggle" @click="toggleDarkMode">
         <i :class="isDarkMode ? 'fas fa-sun' : 'fas fa-moon'"></i>
         {{ darkModeText }}
@@ -90,8 +91,22 @@
             space.innerHTML = "&nbsp;";
             textBlock.appendChild(space);
           }
-        });
-      },
+        });        
+    },
+
+    blurAnimation() {
+      const textBlock = this.$refs.textBlock;
+      textBlock.innerHTML = this.text; // Set the text
+
+      gsap.fromTo(textBlock, {
+        filter: "blur(20px)"
+      }, {
+        duration: 3,
+        filter: "blur(0px)",
+        ease: "power4.out"
+      });
+    },
+
       randomString(length) {
         const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
         let result = '';
