@@ -1,12 +1,13 @@
 <template>
     <div :class="['container', { dark: isDarkMode }]">
-      <div class="text-block" ref="textBlock">{{ displayText }}</div>
+      <div class="text-block" ref="textBlock"></div>
       <div class="button-group">
         <button @click="typeAnimation">Type Animation</button>
         <button @click="scrambleAnimation">Scramble Animation</button>
         <button @click="flyInAnimation">Fly-In Animation</button>
         <button @click="blurAnimation">Blur Animation</button>
-    </div>
+        <button @click="boldAnimation">Bold Animation</button>
+      </div>
       <button class="dark-mode-toggle" @click="toggleDarkMode">
         <i :class="isDarkMode ? 'fas fa-sun' : 'fas fa-moon'"></i>
         {{ darkModeText }}
@@ -22,9 +23,10 @@
     name: "TextAnimation",
     data() {
       return {
-        text: "This is a sample block of text that will be animated using different effects.",
+        text: "This is a sample block of text that will be animated using different effects. Some words are bolded for emphasis.",
         displayText: "",
         isDarkMode: false,
+        boldWords: ["sample", "animated", "bolded"] // Words to be bolded and animated
       };
     },
     computed: {
@@ -39,6 +41,44 @@
       toggleDarkMode() {
         this.isDarkMode = !this.isDarkMode;
       },
+      boldAnimation() {
+  const textBlock = this.$refs.textBlock;
+  const words = this.text.split(" ");
+  textBlock.innerHTML = ""; // Clear the text block
+
+  words.forEach((word, index) => {
+    const wordContainer = document.createElement("span");
+    wordContainer.style.display = "inline-block";
+    wordContainer.style.whiteSpace = "pre"; // Preserve spaces
+    wordContainer.innerHTML = this.boldWords.includes(word.replace(/[^\w]/g, '')) ? `<strong>${word}</strong>` : word;
+    textBlock.appendChild(wordContainer);
+
+    // Ensure space after the word
+    if (index < words.length - 1) {
+      textBlock.appendChild(document.createTextNode(" "));
+    }
+
+    // Apply animation to bold words
+    if (this.boldWords.includes(word.replace(/[^\w]/g, ''))) {
+      const boldElement = wordContainer.querySelector("strong");
+      const tl = gsap.timeline();
+
+      tl.fromTo(boldElement, 
+        { scale: 0, opacity: 0, transformOrigin: 'center' }, 
+        { 
+          scale: 10, 
+          opacity: 1,
+          duration: 1, 
+          ease: "power1.inOut"
+        }
+      ).to(boldElement, {
+        scale: 1,
+        duration: 1,
+        ease: "power1.inOut"
+      });
+    }
+  });
+},
       typeAnimation() {
         this.displayText = ""; // Reset the text
         gsap.to(this.$refs.textBlock, {

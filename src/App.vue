@@ -23,4 +23,9 @@ body, html, #app {
   padding: 0;
   height: 100%;
 }
+
+strong {
+  display: inline-block;
+}
+
 </style>
