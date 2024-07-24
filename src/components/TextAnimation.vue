@@ -26,7 +26,7 @@
         text: "This is a sample block of text that will be animated using different effects. Some words are bolded for emphasis.",
         displayText: "",
         isDarkMode: false,
-        boldWords: ["sample", "animated", "bolded"] // Words to be bolded and animated
+        boldWords: ["sample", "effects", "emphasis"] // Words to be bolded and animated
       };
     },
     computed: {
@@ -160,7 +160,9 @@
   </script>
   
   <style scoped>
+  
   .container {
+    font-size: 20px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -169,11 +171,31 @@
     background-color: #f0f0f0;
     font-family: 'Nunito', sans-serif;
     transition: background-color 0.3s ease, color 0.3s ease;
+    overflow: hidden;
   }
   
-  .container.dark {
-    background-color: #1a1a1a;
-    color: rgba(255, 255, 255, 0.95);
+  @media (min-width: 600px) {
+    .container {
+      font-size: 1.5rem;
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .container {
+      font-size: 2rem;
+    }
+  }
+  
+  @media (min-width: 1280px) {
+    .container {
+      font-size: 3rem;
+    }
+  }
+  
+  @media (min-width: 1600px) {
+    .container {
+      font-size: 3.5rem;
+    }
   }
   
   .text-block {
@@ -181,20 +203,19 @@
     border-radius: 1rem;
     text-align: center;
     margin-bottom: 20px;
-    font-size: 3rem;
     width: 60%;
+    font-size: inherit; /* Use the container's font size */
   }
   
   .button-group {
     display: flex;
-    justify-content: center;
-    gap: 2rem;
+    flex-direction: column;
+    gap: 1rem;
   }
   
   button {
-    padding: 1rem 2rem;
-    font-family: 'Nunito', sans-serif;
-    font-size: 2rem;
+    padding: 1rem;
+    font-size: 1rem;
     cursor: pointer;
     border: 2px solid;
     border-radius: 999px;
@@ -238,15 +259,63 @@
     background-color: #e0e0e0;
     border-color: transparent;
     color: rgba(0, 0, 0, 0.95);
-  }  
+  }
   
   .container.dark .dark-mode-toggle {
     background-color: #dedede;
     color: rgba(0, 0, 0, 0.95);
   }
   
+  @media (min-width: 600px) {
+    .button-group {
+      flex-direction: row;
+      gap: 1.5rem;
+    }
+  
+    button {
+      padding: 1.2rem;
+      font-size: 1.2rem;
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .button-group {
+      gap: 2rem;
+    }
+  
+    button {
+      padding: 1.5rem;
+      font-size: 1.5rem;
+    }
+  }
+  
+  @media (min-width: 1280px) {
+    .button-group {
+      gap: 2.5rem;
+    }
+  
+    button {
+      padding: 2rem;
+      font-size: 2rem;
+    }
+  }
+  
+  @media (min-width: 1600px) {
+    .button-group {
+      gap: 3rem;
+    }
+  
+    button {
+      padding: 2rem;
+      font-size: 2rem;
+    }
+  }
+
   .dark-mode-toggle i {
     margin-right: 0.5rem;
   }
+
   </style>
+  
+
   
