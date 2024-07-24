@@ -245,7 +245,11 @@
     background-color: #777;
     color: white;
   }
-  
+
+  .container.dark {
+    background-color: rgba(21, 21, 21, 0.95);
+  }  
+
   .container.dark .text-block {
     color: rgba(255, 255, 255, 0.95);
   }
@@ -268,8 +272,11 @@
   
   @media (min-width: 600px) {
     .button-group {
-      flex-direction: row;
+      flex-direction: column;
+      justify-content: center;
       gap: 1.5rem;
+      width: calc(100% - 2rem);
+      margin: 1rem 1rem;
     }
   
     button {
@@ -280,12 +287,13 @@
   
   @media (min-width: 1024px) {
     .button-group {
+      flex-direction: row;
       gap: 2rem;
     }
   
     button {
-      padding: 1.5rem;
-      font-size: 1.5rem;
+      padding: 1.2rem;
+      font-size: 1.2rem;
     }
   }
   
@@ -295,8 +303,8 @@
     }
   
     button {
-      padding: 2rem;
-      font-size: 2rem;
+      padding: 1.5rem;
+      font-size: 1.5rem;
     }
   }
   
